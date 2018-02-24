@@ -1,0 +1,112 @@
+server:
+  port: 8080
+  session-timeout: 1800
+
+# 应用信息
+app:
+  app-name: zimeweb
+  app-host: zime-web-liujh.com
+  allow-generate-api: true
+  allow-cross-domain-access: true
+  # 开发dev 测试test  生产 master
+  env: dev
+
+# 对象存储配置
+oss:
+  accessKeyId: xoERGPROHHq82JpW
+  accessKeySecret: cqbK8uWxk9lK4C4zI8MDWQrPGb691Y
+  upload-endpoint: http://oss-cn-qingdao.aliyuncs.com
+  download-endpoint: http://dev-proj.oss-cn-qingdao.aliyuncs.com
+  bucketName: dev-proj
+  # 下载地址的有效时长，单位为ms，默认为半小时
+  download-url-expiration: 1800000
+
+spring:
+  main:
+    banner-mode: console
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    multipart:
+      enabled: true
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+  datasource:
+    name: datasource
+    initialize: false
+    url: jdbc:mysql://localhost:3306/mmall?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF8
+    username: root
+    password: 1111
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    max-active: 2
+    max-idle: 2
+    min-idle: 2
+    initial-size: 2
+    validation-query: select 1
+    test-on-borrow: true
+    test-on-return: false
+    test-while-idle: false
+    time-between-eviction-runs-millis: 3000
+    min-evictable-idle-time-millis: 3000
+    max-wait: 3000
+    jmx-enabled: true
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+
+logging:
+  path: /zime-web-log
+
+# 缓存配置
+memcached:
+  servers: 139.129.116.62:11211
+  username: root
+  password: YwjX2NhL62
+  needAuth: false
+
+# 短信
+sms:
+  uid: 2118
+  sign: 美柜衣橱
+  token: ebcd37a9804a8a6aa0fcae6418c5049f6442fc1cf1c6cd1cc848e5e7dfd635ca
+  url: http://sms.reactor.uworks.cc/sms/msg/send
+
+# FTP
+ftp:
+  server-ip: 127.0.0.1
+  server-http-prefix: http://img.zimemall.com
+  user: zime
+  password: 123456
+
+#支付宝配置
+alipay:
+  #支付宝网关
+  open-api-domain: https://openapi.alipaydev.com/gateway.do
+  mcloud-api-domain: http://mcloudmonitor.com/gateway.do
+  #合作身份者ID，以2088开头由16位纯数字组成的字符串
+  partner: 2088102175330561
+  #收款支付宝账号，以2088开头由16位纯数字组成的字符串
+  seller-id: 2088102175330561
+  #商户的私钥
+  private-key: MIIEwAIBADANBgkqhkiG9w0BAQEFAASCBKowggSmAgEAAoIBAQCx+XlUD261N1NA3k2pXy8LjJyBdlksartXS84bhdLMYFcLTnS4r2Z35IVgInW1bXsfInkqZS9P4/MzfWjFXYVKqtWGyVb0Bvjicdcxs1nMA0ta559AhXTLAtVY+SpZKBnBuEpls90tiH0Y8PM90cDaym06wN5XFZEbUHchVtSQBopUZZrGA3RC0kiQVwRH61v2VzP2wziniYWwjztgAhSMtrEBPhr1t8kpwGUNk+Dc6jXS2pyfeAF6Rt+JWaQk9/vJiu5SE4pevcYtPCMzTJm3Ues6F3XEHTdXjh+OQ7BRsd8MpHtJsX+Lf6Bia8kXXbFFPnvq+4NBJg410KOhoHTVAgMBAAECggEBAKnhxWNs27MU3V41FJKQrdprXNTjABm6w5p/XHy/D8lQSKYdPKMxojDdLEbofc0xdO3yPRAvx6qNnw7OLZz/OQVd7jYbp+mFYjrciZoCZbushVh/cW7oNOS3jqjAJiE2eueEH1fXCU+2UhrlnHms51axFPSZN2KOzpTxCNYFCR9z0lQIm2ugkSDsQPsxaF/UqP8kIClRqVJkWE7BsT0PdL8cCovK1xIgTFldClfEJ4zav31pRhSvYheW1vMGRU8IHI9uQ/2qNKOOWPZIGBsip90c6NZGbpyueWJT0Qp6poF2KbV0YRdyhxiukdULj3tbEVN5NRzSpQDrrzaKjFvfMt0CgYEA+WOf/xFM3ZIBhPTGlgWVPrWnotbUTrnPCQUveDX92JKcd3ACV986+pS1ScRsfBPIkpD1igPjFz2fWzj6pKc8ZexGoXK94Ug1lq+QJ6Lu25C5pZU0QUoaXne2k9ZtcpM4LO5+vvKNYnDtWeLzxrxtOuSHYpC28mHoaJ2fgBukIkcCgYEAtrE5LRUwQcDv/Q2X+G3ykhAs8c6NEbJzASXjbVA+YMW2zwizl6ggMFXpDle7i3YvGp2tWrz8J9eQN6VXj52QleUUY+/MCD4OHoWT7T6AV8ibztc4p/W+nMe95eTk3fS0ECbGBxDf0deP1qAFa2EpUU3A6fr6+bFzGXltYJpUggMCgYEA15UsgSUmaj9F+vZSGOvYmS4VLOpC+48aDvUhlOwvdSFACuuTyvxZErashIk9MoEzmKeg6l7z12pYsFXwLZe32W/HmtcCl5WBZbJ8jhcGHl3cbewuEOaLJvCbru7lC++B1y2P+WbZm6h9NX/ANiM61XcqJaVt0NecPZtMf0TlvQ8CgYEAhf7OdOaJknC0lOIXiLr7o24ByQk6JrS/7SOg/1hPqCLbxlYXgzBpC4q3eTGX+N4iBl+H+nmKaJ6OxIGdC1UB6y8uGW6UM6dwK6rFqMii0b/tp3PrtiVkPRGzkp6jzrfgKciGjkAuKXb1pPGRiASnjV5+FB9lXSZtyU1qj+Qh/4kCgYEA1A4hr0AlhM6SGUFgwrnxpAhffpq5+KpYtt2w6SjHdvRkZ4fBCsMPUkHOA043DjTAjEsETY1i9/HEQxrGv6NzgIAr1Z4XrKZVvKfdl7ucBRiYCXGHyWMZbCztyK4ylaeeV3CV3D0e3e5EMn1x3SY4zfiB0v/6ynNBf6aotpjwWXI=
+  #支付宝支付公共key
+  ali-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxlHI3cipMgSAcoygBCK2mKD6OHhSUnnhFmYmN0hsxgD4tRqvtHKGd5wwTg4+PJHrs08bi3uzL39gSIEZTtcSvud3fy+TDn6iJFEFWgJRPajYK3zfVYYxm1CGgeLCgqIHIWM/j8zgutKEa/F1wxrwmARzO+5/0YCP2pSOLCVt1KtzoXBE7n42OhkU124TWr5CSEoZcaPwLA8ywHOB7LTNyPkr9aS5MK0DqVsf04Piefb5CzBoRjrrpWJhTXE6s6aCUNmBzECt8e2uxeWwKHTYz6GvEr0P0eB4iarfvEKoq6/P7LrUFdRVrudqdKKvrbAe5tOEjncx4AjS9w3SMFk1ywIDAQAB
+  #支付宝支付key
+  ali-pay-key: 
+  #支付宝支付id（用于支付宝notify远程服务器ATN验证时使用）
+  ali-pay-pid: 2088102175330561
+  #支付宝消息验证地址（支付宝notify远程服务器ATN验证url）
+  ali-pay-https-verify-url: https://mapi.alipay.com/gateway.do?
+  #支付宝支付service  固定值
+  ali-pay-service: alipay.wap.create.direct.pay.by.user
+  #app-id
+  app-id: 2016091200495875
+  #md5-key
+  md5Key: hq5m8axnzwx75dpeplkwawhtog4nj2sr
+  
+    

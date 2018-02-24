@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zime.web.dao.mapper.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.zime.web.dao.entity.Member">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="weibo" jdbcType="VARCHAR" property="weibo" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="circle_pic" jdbcType="VARCHAR" property="circlePic" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="hobby" jdbcType="VARCHAR" property="hobby" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="xiong_wei" jdbcType="VARCHAR" property="xiongWei" />
+    <result column="yao_wei" jdbcType="VARCHAR" property="yaoWei" />
+    <result column="tun_wei" jdbcType="VARCHAR" property="tunWei" />
+    <result column="shoe_size" jdbcType="VARCHAR" property="shoeSize" />
+    <result column="somatotype" jdbcType="VARCHAR" property="somatotype" />
+    <result column="member_role" jdbcType="VARCHAR" property="memberRole" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="last_boot_time" jdbcType="TIMESTAMP" property="lastBootTime" />
+    <result column="app_num" jdbcType="INTEGER" property="appNum" />
+    <result column="coupon" jdbcType="INTEGER" property="coupon" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nickname, openid, mobile, password, address, sex, birthday, age, wechat, weibo, 
+    icon, circle_pic, job, hobby, height, weight, xiong_wei, yao_wei, tun_wei, shoe_size, 
+    somatotype, member_role, latitude, longitude, last_boot_time, app_num, coupon, create_by, 
+    create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_member
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_member
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zime.web.dao.entity.Member">
+    insert into t_member (id, nickname, openid, 
+      mobile, password, address, 
+      sex, birthday, age, 
+      wechat, weibo, icon, 
+      circle_pic, job, hobby, 
+      height, weight, xiong_wei, 
+      yao_wei, tun_wei, shoe_size, 
+      somatotype, member_role, latitude, 
+      longitude, last_boot_time, app_num, 
+      coupon, create_by, create_date, 
+      update_by, update_date, del_flag
+      )
+    values (#{id,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=TIMESTAMP}, #{age,jdbcType=INTEGER}, 
+      #{wechat,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{circlePic,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, 
+      #{height,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, #{xiongWei,jdbcType=VARCHAR}, 
+      #{yaoWei,jdbcType=VARCHAR}, #{tunWei,jdbcType=VARCHAR}, #{shoeSize,jdbcType=VARCHAR}, 
+      #{somatotype,jdbcType=VARCHAR}, #{memberRole,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=VARCHAR}, #{lastBootTime,jdbcType=TIMESTAMP}, #{appNum,jdbcType=INTEGER}, 
+      #{coupon,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zime.web.dao.entity.Member">
+    insert into t_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="weibo != null">
+        weibo,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="circlePic != null">
+        circle_pic,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="hobby != null">
+        hobby,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="xiongWei != null">
+        xiong_wei,
+      </if>
+      <if test="yaoWei != null">
+        yao_wei,
+      </if>
+      <if test="tunWei != null">
+        tun_wei,
+      </if>
+      <if test="shoeSize != null">
+        shoe_size,
+      </if>
+      <if test="somatotype != null">
+        somatotype,
+      </if>
+      <if test="memberRole != null">
+        member_role,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="lastBootTime != null">
+        last_boot_time,
+      </if>
+      <if test="appNum != null">
+        app_num,
+      </if>
+      <if test="coupon != null">
+        coupon,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="weibo != null">
+        #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="circlePic != null">
+        #{circlePic,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="xiongWei != null">
+        #{xiongWei,jdbcType=VARCHAR},
+      </if>
+      <if test="yaoWei != null">
+        #{yaoWei,jdbcType=VARCHAR},
+      </if>
+      <if test="tunWei != null">
+        #{tunWei,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeSize != null">
+        #{shoeSize,jdbcType=VARCHAR},
+      </if>
+      <if test="somatotype != null">
+        #{somatotype,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRole != null">
+        #{memberRole,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBootTime != null">
+        #{lastBootTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appNum != null">
+        #{appNum,jdbcType=INTEGER},
+      </if>
+      <if test="coupon != null">
+        #{coupon,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zime.web.dao.entity.Member">
+    update t_member
+    <set>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="weibo != null">
+        weibo = #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="circlePic != null">
+        circle_pic = #{circlePic,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        hobby = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="xiongWei != null">
+        xiong_wei = #{xiongWei,jdbcType=VARCHAR},
+      </if>
+      <if test="yaoWei != null">
+        yao_wei = #{yaoWei,jdbcType=VARCHAR},
+      </if>
+      <if test="tunWei != null">
+        tun_wei = #{tunWei,jdbcType=VARCHAR},
+      </if>
+      <if test="shoeSize != null">
+        shoe_size = #{shoeSize,jdbcType=VARCHAR},
+      </if>
+      <if test="somatotype != null">
+        somatotype = #{somatotype,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRole != null">
+        member_role = #{memberRole,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBootTime != null">
+        last_boot_time = #{lastBootTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appNum != null">
+        app_num = #{appNum,jdbcType=INTEGER},
+      </if>
+      <if test="coupon != null">
+        coupon = #{coupon,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zime.web.dao.entity.Member">
+    update t_member
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      age = #{age,jdbcType=INTEGER},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      weibo = #{weibo,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      circle_pic = #{circlePic,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      hobby = #{hobby,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      xiong_wei = #{xiongWei,jdbcType=VARCHAR},
+      yao_wei = #{yaoWei,jdbcType=VARCHAR},
+      tun_wei = #{tunWei,jdbcType=VARCHAR},
+      shoe_size = #{shoeSize,jdbcType=VARCHAR},
+      somatotype = #{somatotype,jdbcType=VARCHAR},
+      member_role = #{memberRole,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      last_boot_time = #{lastBootTime,jdbcType=TIMESTAMP},
+      app_num = #{appNum,jdbcType=INTEGER},
+      coupon = #{coupon,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
