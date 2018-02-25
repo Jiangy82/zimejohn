@@ -45,5 +45,8 @@ public class FileServiceTest {
 	public void test3() {
 		System.out.println(orderService.pay(1491753014256L, 1, "upload"));
 	}
-	
+	@Test
+	public void test4() {
+		System.out.println(orderService.getOrderList(1, 1, 2));
+	}	
 }

@@ -47,9 +47,6 @@ public class PayServiceImpl implements PayService {
     @Override
     public PayStatus aliPayBarCode(AlipayRequestBean payBean) {
 
-
-        String outTradeNo = "本地系统唯一订单ID";
-
         // 实例化具体API对应的request类
         AlipayTradePayRequest appPayRequest = new AlipayTradePayRequest();// 创建API对应的request类
         

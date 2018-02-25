@@ -2,8 +2,11 @@ package com.zime.web.pay.action;
 
 import com.alipay.api.internal.util.AlipaySignature;
 import com.zime.web.pay.service.impl.alipay.AlipayNotify;
+
 import com.zime.web.pay.config.AliPayConfig;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -17,12 +20,11 @@ import java.util.Map;
  * Created by LJH on 2017/11/6.
  */
 public class PayController {
+	private static final Logger log = LoggerFactory.getLogger(PayController.class);
+
 
     @Resource
     private AliPayConfig aliPayConfig;
-
-
-
 
     /**
      * 支付宝后台回调接口
@@ -51,13 +53,15 @@ public class PayController {
             // valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
             params.put(name, valueStr);
         }
+        
+        log.info("支付宝回调,sign:{},trade_status:{},参数:{}",params.get("sign"),params.get("trade_status"),params.toString());
 
-
+        //验证回调的正确性，是不是支付宝发的，而且避免重复通知 
         boolean signVerfied = false;
         if (request.getParameter("sign_type").equals("MD5")) {
             signVerfied = AlipayNotify.verify(params);
         } else {
-            signVerfied = AlipaySignature.rsaCheckV1(params, aliPayConfig.getAliPublicKey(), AliPayConfig.CHAESET,
+            signVerfied = AlipaySignature.rsaCheckV2(params, aliPayConfig.getAliPublicKey(), AliPayConfig.CHAESET,
                     AliPayConfig.SIGN_TYPE);
         }
 

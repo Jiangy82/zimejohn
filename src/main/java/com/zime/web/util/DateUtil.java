@@ -18,7 +18,7 @@ public class DateUtil {
 	public static final String yyyy_MM_dd = "yyyy-MM-dd";
 	public static final String yyyyMMddHHmmss = "yyyyMMddHHmmssSSS";
 
-	private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	public static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
 	private static SimpleDateFormat DEFAULT_FORMAT = new SimpleDateFormat(DEFAULT_PATTERN);
 	private static SimpleDateFormat YYYYMMDD_FORMAT = new SimpleDateFormat(yyyyMMdd);

@@ -1,5 +1,7 @@
 package com.zime.web.dao.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.zime.web.dao.entity.Order;
@@ -18,4 +20,11 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
     
     Order selectByUserIdAndOrderNo(@Param("userId")Integer userId, @Param("orderNo")Long orderNo);
+
+    Order selectByOrderNo(Long orderNo);
+    
+    List<Order> selectByUserId(Integer userId);
+    
+    List<Order> selectAllOrder();
+
 }
